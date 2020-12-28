@@ -1,0 +1,10 @@
+
+/node_modules
+/.idea
+yarn-error.log
+*.log
+*.lerna_backup
+*.local.*
+package-lock.json
+
+

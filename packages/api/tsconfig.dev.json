@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "lib": [
+      "ES2019",
+      "dom",
+      "dom.iterable"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "incremental": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@api/*": [
+        "./src/*"
+      ],
+//      "@shared/*": [
+//        "../shared/src/*"
+//      ],
+//      "@domain/*": [
+//        "../domain/src/*"
+//      ],
+//      "@infrastructure/*": [
+//        "../infrastructure/src/*"
+//      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+
+  ],
+  "include": [
+    "scripts/**/*.ts",
+   // "next-env.d.ts",
+    "src/**/*.ts",
+
+  ]
+}
