@@ -23,7 +23,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "downlevelIteration": true,
-    "jsx": "preserve"
+    "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "@oss/*": ["*"]
+    }
   },
   "exclude": [
     "node_modules"
