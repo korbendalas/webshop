@@ -32,6 +32,6 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "dev": "lerna run --parallel --stream dev --scope @shop/app --scope @shop/api "
+    "dev": "lerna run --parallel --stream dev --scope @shop/app --scope @shop/oss --scope @shop/api "
   }
 }

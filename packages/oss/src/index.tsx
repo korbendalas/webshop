@@ -1,37 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "focus-visible/dist/focus-visible";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, CSSReset, theme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { initializeStore } from "./redux/store";
 
-const Chakra = () => {
-  const customTheme = {
-    ...theme,
-    colors: {
-      ...theme.colors,
-      brand: {
-        yellow: "#fed700",
-      },
-    },
-  };
-
-  return (
-    <Provider store={initializeStore()}>
-      <ChakraProvider theme={customTheme}>
-        <CSSReset />
-        <App />
-      </ChakraProvider>
-    </Provider>
-  );
-};
-
 ReactDOM.render(
   <React.StrictMode>
-    <Chakra />
+    <Provider store={initializeStore()}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

@@ -1,4 +1,3 @@
-import { MyAccount } from "./myAccount";
-import { Homepage } from "./homePage";
+import { MainMenu } from "../components/pages/menu";
 
-export { MyAccount, Homepage };
+export { MainMenu };
