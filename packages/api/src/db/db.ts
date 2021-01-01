@@ -6,6 +6,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
     });
+    return conn;
     console.log("MONGO CONNECTED:" + conn.connection.host);
   } catch (err) {
     console.error("MONGO ERR :" + err.message);

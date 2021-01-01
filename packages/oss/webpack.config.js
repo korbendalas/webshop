@@ -47,7 +47,12 @@ module.exports = {
           {
             loader: "style-loader",
           },
-          { loader: MiniCSSExtractPlugin.loader },
+          {
+            loader: MiniCSSExtractPlugin.loader,
+            options: {
+              esModule: false,
+            },
+          },
           {
             loader: "css-loader",
           },
@@ -71,6 +76,7 @@ module.exports = {
       template: "./public/index.html",
       favicon: "./public/favicon.ico",
       manifest: "./public/manifest.json",
+      PUBLIC_URL: "static",
     }),
     new MiniCSSExtractPlugin(),
     new webpack.DefinePlugin({
@@ -83,5 +89,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 4000,
+    watchContentBase: true,
   },
 };

@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { Document, model, Schema } from "mongoose";
 
 const reviewSchema: Schema = new Schema(
   {
@@ -9,6 +9,29 @@ const reviewSchema: Schema = new Schema(
   { timestamps: true },
 );
 
+export interface ProductDocument extends Document {
+  name: { type: string };
+  email: { type: string };
+  password: { type: string };
+  isAdmin?: { type: boolean };
+}
+
+export interface ProductDocument extends Document {
+  user: {
+    type: any;
+  };
+  name: { type: string };
+  img: { type: string; unique: false };
+  brand: { type: string };
+  category: { type: string };
+  description: { type: string };
+  reviews: any;
+  rating: { type: number };
+  numOFReviews: { type: number; required: true; default: 0 };
+  price: { type: number; required: true; default: 0 };
+  countInStock: { type: number; required: true; default: 0 };
+}
+
 const productSchema: Schema = new Schema(
   {
     user: {
@@ -17,7 +40,7 @@ const productSchema: Schema = new Schema(
       ref: "user",
     },
     name: { type: String, required: true },
-    image: { type: String, unique: true },
+    img: { type: String },
     brand: { type: String, required: true },
     category: { type: String, required: true },
     description: { type: String, required: true },

@@ -2,42 +2,43 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import colors from "colors";
 import { users } from "./users";
-import { products } from "./products";
+import { productsSeed } from "./products";
 import { User } from "../models/user";
-import { Product } from "../models/product";
+import { Product } from "../models/products";
 import { Order } from "../models/order";
 import { Categories } from "../models/categories";
 import db from "../db/db";
 const categories = ["Laptops", "Printers"];
+import faker from "faker";
 
 dotenv.config();
 
-db();
-
 export const importData = async () => {
   try {
+    db();
     // @ts-ignore
     await Order.deleteMany();
     // @ts-ignore
     await Product.deleteMany();
     // @ts-ignore
     await User.deleteMany();
-    await Categories;
+    // await Categories;
 
     const createdUsers = await User.insertMany(users);
 
     const adminUser = createdUsers[0]._id;
 
-    const sampleProducts = products.map(product => {
+    const sampleProducts = productsSeed.map(product => {
       return { ...product, user: adminUser };
     });
 
-    await Product.insertMany(sampleProducts);
+    const createdProducts = await Product.insertMany(sampleProducts);
+    console.log("createdProducts", createdProducts);
+    console.log("Data Imported!");
 
     process.exit();
-    console.log("Data Imported!".green);
   } catch (error) {
-    console.error(`${error.message}`.red);
+    console.error(`${error.message}`);
     process.exit(1);
   }
 };
@@ -48,10 +49,10 @@ export const destroyData = async () => {
     await Product.deleteMany({});
     await User.deleteMany({});
 
-    console.log("Data Destroyed!".red);
+    console.log("Data Destroyed!");
     process.exit();
   } catch (error) {
-    console.error(`${error}`.red);
+    console.error(`${error}`);
     process.exit(1);
   }
 };

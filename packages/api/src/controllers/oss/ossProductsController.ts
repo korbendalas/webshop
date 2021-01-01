@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
-import { Product } from "../models/products";
+import { Product } from "../../models/products";
 
-// /api/products
+// GET /api/oss/products
 // public
 export const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}); // empty object returns everything

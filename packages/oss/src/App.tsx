@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-
 import "./style/main.scss";
-import { TopNav } from "./components/navigation/TopNav";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { ModelState } from "@oss/redux/models/index";
@@ -14,6 +12,7 @@ import Lockr from "lockr";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router";
 import { MainMenu } from "@oss/pages";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const history = createBrowserHistory();
 
@@ -28,6 +27,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <CssBaseline />
       <Router history={history}>
         <div className="App">
           {/*<LoginModal isOpen={isOpen === PopupLoginState.Login} />*/}

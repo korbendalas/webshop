@@ -18,6 +18,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import { Route, Switch, useRouteMatch, NavLink } from "react-router-dom";
 import { Dashboard } from "../dashboard";
+import { AddProduct } from "../products/addProduct";
+
 import { Users } from "../users";
 import { Products } from "../products";
 import { Collapse } from "@material-ui/core";
@@ -108,10 +110,10 @@ export const MainMenu = () => {
     setOpen(false);
   };
 
-  const userRoutes = [{ link: "users", component: <h1>all users</h1>, title: "All Users" }];
+  const userRoutes = [{ link: "users", component: <h1>all users</h1>, title: "All Users", exact: true }];
   const productRoutes = [
-    { link: "products", component: <Products />, title: "All Products" },
-    { link: "products/add", component: <h1>add products</h1>, title: "Add Products" },
+    { link: "/products", component: <Products />, title: "All Products", exact: true },
+    { link: "/products/add", component: <AddProduct />, title: "Add Products", exact: false },
   ];
 
   let { path, url } = useRouteMatch();
@@ -182,14 +184,12 @@ export const MainMenu = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-          <Route exact path={`${path}`}>
-            <Dashboard />
-          </Route>
+          <Route exact path={`/`} component={Dashboard} />
+
           {[...productRoutes, ...userRoutes].map((item, index) => (
-            <Route exact path={`${path}${item.link}`} key={index}>
-              {item.component}
-            </Route>
+            <Route exact={item.exact} path={`${item.link}`} key={index} component={() => item.component} />
           ))}
+          <Route render={() => <h1>Not found!</h1>} />
         </Switch>
       </main>
     </div>

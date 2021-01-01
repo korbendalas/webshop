@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import { Product } from "../models/product";
+import { Product } from "../models/products";
 import { User, UserDoc } from "../models/user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";

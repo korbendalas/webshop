@@ -45,7 +45,7 @@ export const CollapseMenuItem = ({ routes, menuToggle, itemName }) => {
             <NavLink
               key={index}
               exact
-              to={`${url}${item.link}`}
+              to={`${item.link}`}
               // to={`${url}${item.link}`}
               activeStyle={{
                 fontWeight: "bold",
