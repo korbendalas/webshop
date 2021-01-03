@@ -4,7 +4,7 @@ import "./style/main.scss";
 import { TopNav } from "./components/navigation/TopNav";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { ModelState } from "./redux/models/index";
+import { ModelState } from "@app/redux/models/index";
 import { PopupLoginState } from "./redux/models/ui";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { LoginModal } from "./components/modals/loginModal";

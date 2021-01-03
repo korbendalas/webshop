@@ -4,14 +4,13 @@ const path = require("path");
 const webpack = require("webpack");
 const autoprefixer = require("autoprefixer");
 module.exports = {
-  output: { path: path.resolve(__dirname, "build"), filename: "bundle.js", publicPath: "/" }, //folder build
+  output: { path: path.resolve(__dirname, "build"), filename: "bundle.js" }, //folder build
   resolve: {
     alias: {
-      "@oss": path.resolve(__dirname, "src"),
+      "@app": path.resolve(__dirname, "src"),
     },
     extensions: [".ts", ".tsx", ".js", ".tsx"],
   },
-
   module: {
     rules: [
       {
@@ -27,41 +26,25 @@ module.exports = {
           loader: "html-loader",
         },
       },
-      { test: /\.(png|jpe?g|svg|gif|ico)$/i, use: { loader: "file-loader" } },
-      // { test: /\.s[ac]ss$/i, use: [MiniCSSExtractPlugin.loader, "sass-loader", "css-loader"] },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   include: /node_modules/,
-      //   use: [
-      //     MiniCSSExtractPlugin.loader,
-      //     // Creates `style` nodes from JS strings
-      //     // "style-loader",
-      //     // Translates CSS into CommonJS
-      //     "css-loader",
-      //     // Compiles Sass to CSS
-      //     "sass-loader",
-      //   ],
-      // },
+      { test: /\.(png|jpe?g|svg|gif|ico)$/i, use: ["file-loader?name=[name].[ext]"] },
+
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
             loader: "style-loader",
           },
-          // { loader: MiniCSSExtractPlugin.loader },
-          {
-            loader: "css-loader",
-          },
-
-          // {
-          //   loader: "postcss-loader",
-          //   options: {
-          //     plugins: [autoprefixer({ browsers: ["> 1%"] })],
-          //   },
-          // },
-          { loader: "resolve-url-loader" },
-
+          // MiniCSSExtractPlugin.loader,
+          "css-loader",
+          // { loader: "resolve-url-loader" },
           { loader: "sass-loader" },
+
+          {
+            loader: "postcss-loader",
+            //   options: {
+            //     plugins: [autoprefixer({ browsers: ["> 1%"] })],
+            //   },
+          },
         ],
       },
     ],
@@ -73,17 +56,18 @@ module.exports = {
       favicon: "./public/favicon.ico",
       manifest: "./public/manifest.json",
     }),
-    // new MiniCSSExtractPlugin(),
+
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    // new MiniCSSExtractPlugin(),
   ],
 
   devServer: {
     historyApiFallback: true,
-    port: 4000,
+    port: 3000,
     overlay: true,
   },
 };

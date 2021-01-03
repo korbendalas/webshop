@@ -18,8 +18,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import { Route, Switch, useRouteMatch, NavLink } from "react-router-dom";
 import { Dashboard } from "../dashboard";
+import { AllProducts } from "@oss/components/pages/products";
 import { Users } from "../users";
-import { Products } from "../products";
 import { Collapse } from "@material-ui/core";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
@@ -110,7 +110,7 @@ export const MainMenu = () => {
 
   const userRoutes = [{ link: "users", component: <h1>all users</h1>, title: "All Users" }];
   const productRoutes = [
-    { link: "products", component: <Products />, title: "All Products" },
+    { link: "products", component: <AllProducts />, title: "All Products" },
     { link: "products/add", component: <h1>add products</h1>, title: "Add Products" },
   ];
 
@@ -163,7 +163,6 @@ export const MainMenu = () => {
 
         <List>
           <NavLink
-            exact
             to={`${url}`}
             activeStyle={{
               fontWeight: "bold",
