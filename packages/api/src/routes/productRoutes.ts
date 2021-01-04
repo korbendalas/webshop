@@ -1,16 +1,19 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import { Product } from "../models/product";
-import { getProducts, getProduct } from "../controllers/productsController";
+import { getProducts, getProduct, getProductsOnSale } from "../controllers/productsController";
 
 const productsRouter = express.Router();
 
 // /api/products
 // public
 productsRouter.route("/").get(getProducts);
+// @ GET PRODUCTS ON SALE
+// @ /api/products/onsale
+productsRouter.route("/onsale").get(getProductsOnSale);
 
 // @ GET SINGLE PRODUCT
-// @ /api/product/:id
+// @ /api/products/product/:id
 productsRouter.route("/:id").get(getProduct);
 
 export default productsRouter;

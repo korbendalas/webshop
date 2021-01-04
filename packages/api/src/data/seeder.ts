@@ -6,6 +6,7 @@ import { productsSeed } from "./products";
 import { User } from "../models/user";
 import { Product } from "../models/product";
 import { Order } from "../models/order";
+import { OnSale } from "../models/onSale";
 import { Categories } from "../models/categories";
 import db from "../db/db";
 const categories = ["Laptops", "Printers"];
@@ -16,13 +17,15 @@ dotenv.config();
 export const importData = async () => {
   try {
     db();
-    // @ts-ignore
+
     await Order.deleteMany();
-    // @ts-ignore
+
     await Product.deleteMany();
 
     await User.deleteMany();
-    // await Categories;
+
+    await OnSale.deleteMany();
+
     // @ts-ignore
     const createdUsers = await User.insertMany(users);
 
@@ -33,7 +36,15 @@ export const importData = async () => {
     });
     // @ts-ignore
     const createdProducts = await Product.insertMany(sampleProducts);
+
+    const onSale = createdProducts.slice(0, 20).map(item => {
+      return { product: item._id, salePrice: Math.floor(Math.random() * 50) };
+    });
+
+    // @ts-ignore
+    const onSaleProducts = await OnSale.insertMany(onSale);
     console.log("createdProducts", createdProducts);
+    console.log("On sale products ", onSaleProducts);
     console.log("Data Imported!");
 
     process.exit();

@@ -5,7 +5,8 @@ export const productsSeed = range(100).map(item => {
   let i = 0;
   return {
     name: faker.commerce.productName(),
-    img: faker.image.cats(),
+    // img: faker.image.cats(),
+    img: `${faker.image.cats()}?random=${Math.round(Math.random() * 1000)}`,
     description: faker.commerce.productDescription(),
     brand: faker.company.companyName(),
     category: "Electronics",

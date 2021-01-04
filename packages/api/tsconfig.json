@@ -10,7 +10,8 @@
   },
   "compileOnSave": true,
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "uploads"
   ],
   "exclude": [
     "node_modules"

@@ -45,7 +45,7 @@
   "include": [
     "scripts/**/*.ts",
    // "next-env.d.ts",
-    "src/**/*.ts",
-
+   "src/**/*.ts",
+    "uploads"
   ]
 }

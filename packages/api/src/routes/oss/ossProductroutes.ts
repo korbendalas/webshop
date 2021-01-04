@@ -1,18 +1,32 @@
 import express from "express";
-import { getProducts, deleteProduct } from "../../controllers/oss/ossProductsController";
+import {
+  getProducts,
+  deleteProduct,
+  createProduct,
+  editProduct,
+  getProduct,
+} from "../../controllers/oss/ossProductsController";
 
 const ossProductRouter = express.Router();
 
-// /api/oss/products
+// GET ALL  /api/oss/products
 // public
 ossProductRouter.route("/").get(getProducts);
 
-// @ DELETE SINGLE PRODUCT
-// @ /api/oss/products/:id
-ossProductRouter.route("/:id").delete(deleteProduct);
+// @ CREATE PRODUCT
+// POST  /api/oss/products/product
+// public
+ossProductRouter.route("/product").post(createProduct);
 
 // @ GET SINGLE PRODUCT
-// @ /api/product/:id
-// ossProductRouter.route("/:id").get(getProduct);
+// @ /api/product/product/:id
+
+// @ DELETE SINGLE PRODUCT
+// @ /api/oss/products/product/:id
+
+// @ UPDATE SINGLE PRODUCT
+// PUT /api/oss/products/product/:id
+// public
+ossProductRouter.route("/product/:id").get(getProduct).delete(deleteProduct).put(editProduct);
 
 export default ossProductRouter;
