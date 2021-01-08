@@ -14,6 +14,6 @@ productsRouter.route("/onsale").get(getProductsOnSale);
 
 // @ GET SINGLE PRODUCT
 // @ /api/products/product/:id
-productsRouter.route("/:id").get(getProduct);
+productsRouter.route("/product/:id").get(getProduct);
 
 export default productsRouter;

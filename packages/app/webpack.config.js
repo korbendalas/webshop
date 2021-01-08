@@ -4,7 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 const autoprefixer = require("autoprefixer");
 module.exports = {
-  output: { path: path.resolve(__dirname, "build"), filename: "bundle.js" }, //folder build
+  output: { path: path.resolve(__dirname, "build"), filename: "bundle.js", publicPath: "/" }, //folder build
   resolve: {
     alias: {
       "@app": path.resolve(__dirname, "src"),
@@ -69,5 +69,6 @@ module.exports = {
     historyApiFallback: true,
     port: 3000,
     overlay: true,
+    hot: true,
   },
 };

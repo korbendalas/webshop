@@ -1,15 +1,15 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 module.exports = {
+  important: true,
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      blue: {
-        light: "#85d7ff",
-        DEFAULT: "#1fb6ff",
+    extend: {
+      colors: {
+        yellow: { brand: "#fed700" },
       },
-      yellow: { brand: "#fed700" },
     },
-    extend: {},
   },
   variants: {
     extend: {},

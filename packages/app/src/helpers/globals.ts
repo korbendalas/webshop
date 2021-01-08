@@ -1,1 +1,1 @@
-export const MAX_WIDTH = "w-9/12";
+export const MAX_WIDTH = "w-10/12";

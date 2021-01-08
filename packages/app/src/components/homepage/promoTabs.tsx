@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { MAX_WIDTH } from "../../../helpers/globals";
+import { MAX_WIDTH } from "../../helpers/globals";
 import classnames from "classnames";
-import { ProductCard } from "../homepage/productCard";
-import { OnSale } from "@app/components/pages/homepage/onSale";
+import { ProductCard } from "./productCard";
+import { OnSale } from "@app/components/homepage/onSale";
 
 export const PromoTabs = () => {
   const tabStyle = { borderColor: "brand.yellow", fontWeight: 700 };

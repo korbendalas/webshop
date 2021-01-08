@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { MAX_WIDTH } from "../../../helpers/globals";
+import { MAX_WIDTH } from "../../helpers/globals";
 import { Input, InputGroup, InputRightAddon } from "@chakra-ui/react";
 
 export const Newsletter = () => {

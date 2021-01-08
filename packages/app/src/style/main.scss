@@ -2,5 +2,13 @@ body {
   font-family: 'Roboto', sans-serif;
   background: #353535;
 }
+@import "swiper";
+@import "tailwind";
+
+@import "~swiper/swiper.scss";
+@import "~swiper/components/navigation/navigation.scss";
+@import "~swiper/components/pagination/pagination.scss";
+
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
+@import "~tailwindcss/utilities";

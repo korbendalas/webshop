@@ -13,6 +13,9 @@ import Lockr from "lockr";
 import { createBrowserHistory } from "history";
 import { Router, Switch, Route } from "react-router";
 import { MyAccount, Homepage } from "./pages";
+import { Product } from "@app/components/product/product";
+import { Breadcrumbs } from "@app/components/navigation/breadcrumbs";
+import { routes } from "@app/services/routes";
 
 const history = createBrowserHistory();
 
@@ -50,8 +53,39 @@ function App() {
           <TopNav />
 
           <Switch>
-            <Route path="/me" component={MyAccount} />
-            <Route path="/" component={Homepage} />
+            {routes.map(({ path, name, Component }, key) => (
+              <Route
+                exact
+                path={path}
+                key={key}
+                render={props => {
+                  const crumbs = routes
+                    // Get all routes that contain the current one.
+                    .filter(({ path }) => props.match.path.includes(path))
+                    // Swap out any dynamic routes with their param values.
+                    // E.g. "/pizza/:pizzaId" will become "/pizza/1"
+                    .map(({ path, ...rest }) => ({
+                      path: Object.keys(props.match.params).length
+                        ? Object.keys(props.match.params).reduce(
+                            (path, param) => path.replace(`:${param}`, props.match.params[param]),
+                            path,
+                          )
+                        : path,
+                      ...rest,
+                    }));
+
+                  console.log(`Generated crumbs for ${props.match.path}`);
+                  crumbs.map(({ name, path }) => console.log({ name, path }));
+
+                  return (
+                    <div className="">
+                      <Breadcrumbs crumbs={crumbs} />
+                      <Component {...props} />
+                    </div>
+                  );
+                }}
+              />
+            ))}
           </Switch>
 
           <ReactQueryDevtools initialIsOpen={false} />

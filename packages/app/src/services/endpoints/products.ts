@@ -5,3 +5,10 @@ export async function onSaleProducts() {
 
   return response;
 }
+
+//products/product/:id
+export async function getSingleProduct({ id }) {
+  const response = await http.get(`/api/products/product/${id}`);
+
+  return response;
+}

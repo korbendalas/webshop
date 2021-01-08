@@ -11,7 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import { MAX_WIDTH } from "../../../helpers/globals";
+import { MAX_WIDTH } from "../../helpers/globals";
 import classnames from "classnames";
 import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
 
@@ -33,33 +33,14 @@ const routes = [
 export const MeCmp = () => {
   const tabStyle = { borderColor: "brand.yellow", fontWeight: 700 };
   let { path, url, ...props } = useRouteMatch();
-
-  const [crumb, setCrumb] = useState("Dashboard");
+  console.log("url", url);
+  console.log("path", path);
   return (
     <div className={classnames("flex flex-col justify-between py-3 mx-auto", MAX_WIDTH)}>
-      <div className="flex my-5 ">
-        <Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.500" />}>
-          <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to="/">
-              Home
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <BreadcrumbLink as={Link} to={`${path}/dashboard`}>
-              My Profile
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink href="#">{crumb}</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
-      </div>
       <Tabs orientation="vertical" width="100%">
         <TabList text="left" width="400px">
           {routes.map(item => (
-            <Link onClick={() => setCrumb(item.title)} to={`${url}/${item.link}`}>
+            <Link to={`${url}/${item.link}`}>
               <Tab _selected={tabStyle} py="3">
                 {item.title}
               </Tab>
