@@ -6,9 +6,9 @@ import { useTimeout } from "react-use";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Controller, Lazy, Navigation, Pagination } from "swiper";
 
-export const OnSale = () => {
+export const TopRated = () => {
   SwiperCore.use([Autoplay, Pagination, Navigation, Controller, Lazy]);
-  const { data, isLoading } = useQuery("onSaleProducts", onSaleProducts);
+  const { data, isLoading } = useQuery("topRatedProducts", onSaleProducts);
 
   const [isReady] = useTimeout(900);
   const [newSwiper, setSwiper] = useState(null);

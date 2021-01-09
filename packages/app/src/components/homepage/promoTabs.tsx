@@ -1,9 +1,11 @@
 import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../helpers/globals";
 import classnames from "classnames";
 import { ProductCard } from "./productCard";
 import { OnSale } from "@app/components/homepage/onSale";
+import { Featured } from "@app/components/homepage/featured";
+import { TopRated } from "@app/components/homepage/topRated";
 
 export const PromoTabs = () => {
   const tabStyle = { borderColor: "brand.yellow", fontWeight: 700 };
@@ -26,12 +28,7 @@ export const PromoTabs = () => {
           <TabPanels>
             <TabPanel>
               <div className="flex">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <Featured />
               </div>
             </TabPanel>
             <TabPanel>
@@ -41,12 +38,7 @@ export const PromoTabs = () => {
             </TabPanel>
             <TabPanel>
               <div className="flex">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <TopRated />
               </div>
             </TabPanel>
           </TabPanels>

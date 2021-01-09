@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import "./style/main.scss";
+import "swiper/swiper-bundle.min.css";
 import { TopNav } from "./components/navigation/TopNav";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";

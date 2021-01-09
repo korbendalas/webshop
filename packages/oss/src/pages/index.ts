@@ -1,3 +1,3 @@
-import { MainMenu } from "../components/pages/menu";
+import { MainMenu } from "../components/menu";
 
 export { MainMenu };

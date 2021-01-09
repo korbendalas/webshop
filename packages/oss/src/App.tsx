@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-
 import "./style/main.scss";
 import { TopNav } from "./components/navigation/TopNav";
 import { QueryClient, QueryClientProvider } from "react-query";

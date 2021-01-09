@@ -49,6 +49,12 @@ const productSchema: Schema = new Schema(
     numOFReviews: { type: Number, required: true, default: 0 },
     price: { type: Number, required: true, default: 0 },
     countInStock: { type: Number, required: true, default: 0 },
+    onSale: {
+      type: Boolean,
+      default: false,
+    },
+    salePrice: { type: Number, default: 0 },
+    featured: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

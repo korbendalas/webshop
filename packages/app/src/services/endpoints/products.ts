@@ -12,3 +12,18 @@ export async function getSingleProduct({ id }) {
 
   return response;
 }
+
+// @get FEATURED PRODUCTS
+// /api/products/featured
+export async function getFeaturedProducts() {
+  const response = await http.get(`/api/products/featured`);
+
+  return response;
+}
+// @get TOP RATED
+// /api/products/toprated
+export async function getTopRatedProducts() {
+  const response = await http.get(`/api/products/toprated`);
+
+  return response;
+}

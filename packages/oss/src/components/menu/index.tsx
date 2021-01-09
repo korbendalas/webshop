@@ -18,13 +18,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import { Route, Switch, useRouteMatch, NavLink } from "react-router-dom";
 import { Dashboard } from "../dashboard";
-import { AllProducts } from "@oss/components/pages/products";
+import { AllProducts } from "@oss/components/products";
 import { Users } from "../users";
 import { Collapse } from "@material-ui/core";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { CollapseMenuItem } from "./collapseMenuItem";
 import MailIcon from "@material-ui/icons/Mail";
+import { AddProduct } from "@oss/components/products/addProduct";
 
 const drawerWidth = 240;
 
@@ -111,7 +112,7 @@ export const MainMenu = () => {
   const userRoutes = [{ link: "users", component: <h1>all users</h1>, title: "All Users" }];
   const productRoutes = [
     { link: "products", component: <AllProducts />, title: "All Products" },
-    { link: "products/add", component: <h1>add products</h1>, title: "Add Products" },
+    { link: "products/add", component: <AddProduct />, title: "Add Products" },
   ];
 
   let { path, url } = useRouteMatch();

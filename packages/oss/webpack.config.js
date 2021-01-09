@@ -85,5 +85,6 @@ module.exports = {
     historyApiFallback: true,
     port: 4000,
     overlay: true,
+    hot: true,
   },
 };

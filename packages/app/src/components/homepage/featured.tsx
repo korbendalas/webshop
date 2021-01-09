@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { onSaleProducts } from "@app/services/endpoints/products";
+import { getFeaturedProducts } from "@app/services/endpoints/products";
 import { ProductCard } from "@app/components/homepage/productCard";
 import { useTimeout } from "react-use";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Controller, Lazy, Navigation, Pagination } from "swiper";
 
-export const OnSale = () => {
+export const Featured = () => {
   SwiperCore.use([Autoplay, Pagination, Navigation, Controller, Lazy]);
-  const { data, isLoading } = useQuery("onSaleProducts", onSaleProducts);
+  const { data, isLoading } = useQuery("featuredProducts", getFeaturedProducts);
 
   const [isReady] = useTimeout(900);
   const [newSwiper, setSwiper] = useState(null);
