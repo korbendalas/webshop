@@ -1,13 +1,17 @@
 import asyncHandler from "express-async-handler";
 import { Product } from "../../models/product";
+import { buildStaticHostLink } from "../../helpers/buildHostLink";
 
 // @ GET ALL PRODUCTS
 // GET /api/oss/products
 // public
 export const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).populate("user", "-password"); // empty object returns everything
-
-  res.json(products);
+  const products2 = products.map(item => {
+    item.img = buildStaticHostLink({ req }) + item.img;
+    return item;
+  });
+  res.json(products2);
 });
 
 // @ GET SINGLE PRODUCT
@@ -42,22 +46,20 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 export const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
     // @ts-ignore
-    user: req.user._id,
+    // user: req.user._id,
+    // user: "5ffa29bf2b1517680b4c5d65,",
     name: req.body.name,
     img: req.body.img,
     brand: req.body.brand,
     category: req.body.category,
     description: req.body.description,
-    reviews: req.body.reviews ?? [],
-    rating: req.body.rating,
-    numOFReviews: req.body.numOFReviews ?? 0,
     price: req.body.price,
-    countInStock: req.body.countInStock,
   });
   const createdProduct = await product.save();
 
   if (createdProduct) {
-    res.json(createdProduct);
+    console.log("product created!", createdProduct);
+    res.json({ ...createdProduct, img: buildStaticHostLink({ req }) + createdProduct.img });
   } else {
     res.status(404).json({ message: "Product not created." });
   }

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import productsRouter from "./routes/productRoutes";
 import usersRouter from "./routes/userRoutes";
 import ossProductRouter from "./routes/oss/ossProductroutes";
+import uploadRouter from "./routes/oss/uploadRoutes";
 import db from "./db/db";
 import cors from "cors";
 import path from "path";
@@ -24,7 +25,9 @@ app.use(express.json());
 app.use("/api/products", productsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/oss/products", ossProductRouter);
-app.use("/uploads", express.static(path.join(path.resolve(), "/uploads ")));
+app.use("/api/oss/upload", uploadRouter);
+// app.use("/uploads", express.static(path.join(path.resolve(), "uploads ")));
+app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.json({ hello: "The sedulous hyena ate the antelope!" });

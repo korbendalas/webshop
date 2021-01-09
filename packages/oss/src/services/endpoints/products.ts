@@ -16,7 +16,7 @@ export async function getProduct({ id }: { id: string }) {
 }
 
 export async function createProduct(product) {
-  const response = await http.post(`/api/oss/products/product/`, product);
+  const response = await http.post(`/api/oss/products/product`, product);
   return response;
 }
 

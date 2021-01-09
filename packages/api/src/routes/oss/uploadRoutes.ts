@@ -34,7 +34,8 @@ const upload = multer({
 });
 
 uploadRouter.post("/", upload.single("image"), (req: any, res) => {
-  res.send(`${buildStaticHostLink({ req })}/${req.file.path}`);
+  // res.send({ url: `${buildStaticHostLink({ req })}/${req.file.path}` });
+  res.send({ url: `/${req.file.path}` });
 });
 
 export { upload };

@@ -3,7 +3,10 @@ import { Formik } from "formik";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Button, TextField, IconButton } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
-import { ImageUpload } from "@oss/components/common/imageUpload";
+import { useImageUpload } from "@oss/hooks/useImageupload";
+import Dashboard from "@uppy/react/lib/Dashboard";
+import { createProduct } from "@oss/services/endpoints/products";
+import { useMutation } from "react-query";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +35,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const AddProduct = () => {
   const classes = useStyles();
-  const [image, setImage] = useState(null);
+  const { uppy, url } = useImageUpload({});
+  const { mutate } = useMutation(createProduct, {
+    onSuccess: async response => {
+      console.log("I'm first!", response);
+    },
+    onSettled: async () => {
+      console.log("I'm second!");
+    },
+  });
+
   return (
     <div className={classes.wrap}>
       <div className={classes.root}>
@@ -41,7 +53,7 @@ export const AddProduct = () => {
           enableReinitialize={true}
           initialValues={{
             name: "",
-            img: "",
+            img: url,
             description: "",
             brand: "",
             category: "",
@@ -49,10 +61,7 @@ export const AddProduct = () => {
             countInStock: 0,
           }}
           onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
+            mutate(values);
           }}
         >
           {props => (
@@ -118,40 +127,26 @@ export const AddProduct = () => {
                 value={props.values.price}
                 variant="outlined"
               />
-              <TextField
-                name="img"
-                style={{ width: "100%" }}
-                label="Enter product image URL"
-                // helperText="Incorrect entry."
-                type="text"
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.img}
-                variant="outlined"
-              />
-              <p>OR</p>
-              <p>Upload image</p>
-              <input
-                accept="image/*"
-                className={classes.input}
-                id="contained-button-file"
-                onChange={e => setImage(e.target.files[0])}
-                multiple
-                type="file"
-              />
-              <label htmlFor="contained-button-file">
-                <Button variant="contained" color="primary" component="span">
-                  Upload
-                </Button>
-              </label>
 
-              <ImageUpload />
+              <Dashboard
+                // width={200}
+                // height={400}
+                replaceTargetContent={true}
+                showProgressDetails={true}
+                uppy={uppy}
+                inline={true}
+                plugins={["ImageEditor"]}
+                // note={description}
+                // locale={{ strings: { dropPasteImport: `${title} %{browse}` } }}
+                metaFields={[{ id: "name", name: "Name", placeholder: "file name" }]}
+              />
               <Button
                 variant="contained"
                 color="primary"
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
+                type="submit"
               >
                 Save
               </Button>

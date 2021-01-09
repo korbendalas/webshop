@@ -34,21 +34,21 @@ export interface ProductDocument extends Document {
 
 const productSchema: Schema = new Schema(
   {
-    user: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: "user",
-    },
-    name: { type: String, required: true },
+    // user: {
+    //   type: Schema.Types.ObjectId,
+    //   required: true,
+    //   ref: "user",
+    // },
+    name: { type: String, required: false },
     img: { type: String },
     brand: { type: String, required: true },
     category: { type: String, required: true },
     description: { type: String, required: true },
     reviews: [reviewSchema],
-    rating: { type: Number, required: true, default: 0 },
-    numOFReviews: { type: Number, required: true, default: 0 },
-    price: { type: Number, required: true, default: 0 },
-    countInStock: { type: Number, required: true, default: 0 },
+    rating: { type: Number, default: 0 },
+    numOfReviews: { type: Number, default: 0 },
+    price: { type: Number, required: true },
+    countInStock: { type: Number, default: 0 },
     onSale: {
       type: Boolean,
       default: false,
