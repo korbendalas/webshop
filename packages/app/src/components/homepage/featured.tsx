@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getFeaturedProducts } from "@app/services/endpoints/products";
-import { ProductCard } from "@app/components/homepage/productCard";
+import { ProductCard } from "@app/components/product/productCard";
 import { useTimeout } from "react-use";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Controller, Lazy, Navigation, Pagination } from "swiper";

@@ -5,7 +5,6 @@ import { getSingleProduct } from "@app/services/endpoints/products";
 import { ProductLeftSidebar } from "./productLeftSidebar";
 import { MAX_WIDTH } from "@app/helpers/globals";
 import classnames from "classnames";
-import { Button, Divider, Image, Input, Spinner } from "@chakra-ui/react";
 import { ProductHero } from "./productHero";
 import { BottomTabs } from "@app/components/product/bottomTabs";
 

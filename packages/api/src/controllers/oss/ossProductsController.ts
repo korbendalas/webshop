@@ -6,7 +6,7 @@ import { buildStaticHostLink } from "../../helpers/buildHostLink";
 // GET /api/oss/products
 // public
 export const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).populate("user", "-password"); // empty object returns everything
+  const products = await Product.find({}).populate("user", "-password").populate("brand"); // empty object returns everything
   const products2 = products.map(item => {
     item.img = buildStaticHostLink({ req }) + item.img;
     return item;
@@ -18,7 +18,7 @@ export const getProducts = asyncHandler(async (req, res) => {
 // GET /api/oss/products/product/:id
 // public
 export const getProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate("user", "-password").populate("brand");
   if (product) {
     res.json(product);
   } else {

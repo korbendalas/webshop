@@ -1,11 +1,16 @@
 import asyncHandler from "express-async-handler";
 import { Product } from "../models/product";
+import { buildStaticHostLink } from "../helpers/buildHostLink";
 
 // /api/products
 // public
 export const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}); // empty object returns everything
-  res.json(products);
+  const products2 = products.map(item => {
+    item.img = buildStaticHostLink({ req }) + item.img;
+    return item;
+  });
+  res.json(products2);
 });
 
 // @ GET PRODUCTS ON SALE
@@ -13,7 +18,11 @@ export const getProducts = asyncHandler(async (req, res) => {
 // public
 export const getProductsOnSale = asyncHandler(async (req, res) => {
   const products = await Product.find({ onSale: true }).limit(15).exec(); // empty object returns everything
-  res.json(products);
+  const products2 = products.map(item => {
+    item.img = buildStaticHostLink({ req }) + item.img;
+    return item;
+  });
+  res.json(products2);
 });
 
 // @ GET FEATURED PRODUCTS
@@ -21,7 +30,11 @@ export const getProductsOnSale = asyncHandler(async (req, res) => {
 // public
 export const getFeaturedProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({ featured: true }).limit(15).exec(); // empty object returns everything
-  res.json(products);
+  const products2 = products.map(item => {
+    item.img = buildStaticHostLink({ req }) + item.img;
+    return item;
+  });
+  res.json(products2);
 });
 
 // @ GET TOP RATED PRODUCTS

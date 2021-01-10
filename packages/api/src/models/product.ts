@@ -2,7 +2,11 @@ import { Document, model, Schema } from "mongoose";
 
 const reviewSchema: Schema = new Schema(
   {
-    name: { type: String, required: true },
+    user: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "user",
+    },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
   },
@@ -32,6 +36,19 @@ export interface ProductDocument extends Document {
   countInStock: { type: number };
 }
 
+const specificationsSchema: Schema = new Schema({
+  brand: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "brand",
+  },
+  height: { type: String, required: false, title: "Height" },
+  width: { type: String, required: false, title: "Width" },
+  screenSize: { type: Number, required: false, title: "Screen size" },
+  weight: { type: Number, required: false, title: "Weight" },
+  modelNumber: { type: String, required: false, title: "Model number" },
+});
+
 const productSchema: Schema = new Schema(
   {
     // user: {
@@ -41,8 +58,15 @@ const productSchema: Schema = new Schema(
     // },
     name: { type: String, required: false },
     img: { type: String },
-    brand: { type: String, required: true },
-    category: { type: String, required: true },
+    brand: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "brand",
+    },
+    category: {
+      type: String,
+      required: true,
+    },
     description: { type: String, required: true },
     reviews: [reviewSchema],
     rating: { type: Number, default: 0 },
@@ -55,6 +79,7 @@ const productSchema: Schema = new Schema(
     },
     salePrice: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
+    specifications: [specificationsSchema],
   },
   { timestamps: true },
 );

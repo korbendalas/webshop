@@ -6,7 +6,8 @@ export const productsSeed = range(100).map(item => {
   return {
     name: faker.commerce.productName(),
 
-    img: `${faker.image.cats()}?random=${Math.round(Math.random() * 1000)}`,
+    // img: `${faker.image.cats()}?random=${Math.round(Math.random() * 1000)}`,
+    img: "/uploads/images/kosarkas.jpg",
     description: faker.commerce.productDescription(),
     brand: faker.company.companyName(),
     category: "Electronics",
@@ -19,3 +20,11 @@ export const productsSeed = range(100).map(item => {
     featured: faker.random.boolean(),
   };
 });
+
+export const brandSeed = [
+  { brand: "Apple" },
+  { brand: "Samsung" },
+  { brand: "Xiaomi" },
+  { brand: "Huawei" },
+  { brand: "Tesla" },
+];

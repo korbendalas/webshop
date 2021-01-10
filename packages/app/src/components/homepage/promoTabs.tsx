@@ -2,7 +2,7 @@ import React from "react";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { MAX_WIDTH } from "../../helpers/globals";
 import classnames from "classnames";
-import { ProductCard } from "./productCard";
+import { ProductCard } from "../product/productCard";
 import { OnSale } from "@app/components/homepage/onSale";
 import { Featured } from "@app/components/homepage/featured";
 import { TopRated } from "@app/components/homepage/topRated";
