@@ -15,6 +15,8 @@ export const OnSale = () => {
 
   useEffect(() => {
     const timer = setTimeout(function () {
+      newSwiper.update();
+      newSwiper?.updateSlides();
       newSwiper?.autoplay?.stop();
       newSwiper?.autoplay?.start();
     }, 1500);
@@ -32,7 +34,7 @@ export const OnSale = () => {
           direction="horizontal"
           slidesPerView="auto"
           spaceBetween={5}
-          loopedSlides={data?.data.length}
+          // loopedSlides={data?.data.length}
           onImagesReady={swiper => {
             setSwiper(swiper);
           }}
@@ -42,7 +44,7 @@ export const OnSale = () => {
           onUpdate={swiper => {
             setSwiper(swiper);
           }}
-          loop={true}
+          // loop={true}
         >
           {data?.data?.map(item => (
             <SwiperSlide style={{ width: "auto" }} key={item._id} className="inline-block ">

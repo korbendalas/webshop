@@ -1,7 +1,15 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
 import { Product } from "../models/product";
-import { getProducts, getProduct, getProductsOnSale, getFeaturedProducts } from "../controllers/productsController";
+import { protect } from "../middleware/authMiddleware";
+
+import {
+  getProducts,
+  getProduct,
+  getProductsOnSale,
+  getFeaturedProducts,
+  createProductReview,
+} from "../controllers/productsController";
 
 const productsRouter = express.Router();
 
@@ -24,5 +32,9 @@ productsRouter.route("/featured").get(getFeaturedProducts);
 // @ GET TOP RATED PRODUCTS
 // @ /api/products/toprated
 productsRouter.route("/toprated").get(getFeaturedProducts);
+
+// @ POST - CREATE REVIEW
+// @ /api/products/product/:id/review
+productsRouter.route("/product/:id/review").post(protect, createProductReview);
 
 export default productsRouter;

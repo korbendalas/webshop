@@ -42,9 +42,15 @@ const specificationsSchema: Schema = new Schema({
     required: true,
     ref: "brand",
   },
-  height: { type: String, required: false, title: "Height" },
-  width: { type: String, required: false, title: "Width" },
-  screenSize: { type: Number, required: false, title: "Screen size" },
+  height: {
+    value: { type: String, required: false },
+    title: { type: String, required: false, defaultValue: "Height" },
+  },
+  width: { value: { type: String, required: false }, title: { type: String, required: false, defaultValue: "Width" } },
+  screenSize: {
+    value: { type: String, required: false },
+    title: { type: String, required: false, defaultValue: "Screen size" },
+  },
   weight: { type: Number, required: false, title: "Weight" },
   modelNumber: { type: String, required: false, title: "Model number" },
 });
@@ -79,7 +85,7 @@ const productSchema: Schema = new Schema(
     },
     salePrice: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
-    specifications: [specificationsSchema],
+    // specifications: [specificationsSchema],
   },
   { timestamps: true },
 );
